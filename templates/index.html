@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        textarea {
+            width: 60%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            resize: none;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            font-weight: bold;
+            font-size: 20px;
+            color: #007BFF;
+        }
+        a {
+            display: block;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>Enter a Product Review:</h2>
+    <textarea id="review" rows="4" cols="50" placeholder="Type your review here..."></textarea><br><br>
+    <button onclick="analyzeSentiment()">Analyze</button>
+    <h3>Sentiment: <span id="result"></span></h3>
+    <br>
+    <a href="/visualize">View Sentiment Trends</a>
+
+    <script>
+        function analyzeSentiment() {
+            let review = document.getElementById("review").value;
+            fetch('/predict', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({"review": review})
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("result").innerText = data.sentiment;
+            });
+        }
+    </script>
+</body>
+</html>

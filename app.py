@@ -10,10 +10,10 @@ import os
 app = Flask(__name__)
 
 # Load the trained model
-model = tf.keras.models.load_model("C:/Users/saran/Documents/saran/Projects/Sentiment_analysis-Flask/models/sentiment_model.h5")
+model = tf.keras.models.load_model("models/sentiment_model.h5")
 
 # Load the tokenizer
-with open("C:/Users/saran/Documents/saran/Projects/Sentiment_analysis-Flask/models/tokenizer.pkl", "rb") as f:
+with open("models/tokenizer.pkl", "rb") as f:
     tokenizer = pickle.load(f)
 
 # Define max_len (same as in training)

@@ -13,7 +13,7 @@ from sklearn.model_selection import train_test_split
 nltk.download("stopwords")
 
 # Load dataset
-df = pd.read_csv("C:/Users/saran/Downloads/finefoodembeddings10k.csv/finefoodembeddings10k.csv")
+df = pd.read_csv("your dataset path")
 
 
 # Convert scores into sentiment labels (Positive = 1, Negative = 0)
